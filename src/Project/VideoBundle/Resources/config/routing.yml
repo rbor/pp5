@@ -1,3 +1,7 @@
 project_video_index:
     path:     /
     defaults: { _controller: ProjectVideoBundle:Default:index }
+
+project_movie_movie:
+    path:     /movie/{movie}
+    defaults: { _controller: ProjectVideoBundle:Movie:movie }
