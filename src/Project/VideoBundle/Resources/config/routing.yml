@@ -1,0 +1,3 @@
+project_video_homepage:
+    path:     /
+    defaults: { _controller: ProjectVideoBundle:Default:index }
