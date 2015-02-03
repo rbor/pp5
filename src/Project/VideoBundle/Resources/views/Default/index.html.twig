@@ -1,7 +1,7 @@
 <p>It's alive !</p>
 
 {% if is_granted("ROLE_USER") %}
-    No elo {{ app.user.username }}
+    Zalogowany jako: {{ app.user.username }}
 {% endif %}
 
 <h2>Movies</h2>
