@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Movie Search{% endblock %}
+
+{% block body %}
+
+<ul>
+{% for item in list %}
+
+<li>{{item.Title}}, {{item.Year}}, <a href='/pp5/web/app_dev.php/id/{{item.imdbID}}'>More</a></li>
+
+{% endfor %}
+
+{% endblock %}

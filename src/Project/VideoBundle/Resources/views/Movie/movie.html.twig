@@ -6,6 +6,9 @@
 <h2>Title: {{ title }}</h2>
 <p>Description: {{ desc }}</p>
 <p>Actors: {{ actors }}</p>
+
+{% if poster is defined %}
 <img src='{{ poster }}'/>
+{% endif %}
 
 {% endblock %}

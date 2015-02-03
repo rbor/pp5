@@ -1,1 +1,19 @@
-It's alive !
+<p>It's alive !</p>
+
+{% if is_granted("ROLE_USER") %}
+    No elo {{ app.user.username }}
+{% endif %}
+
+<h2>Movies</h2>
+<p>
+Movie poster, Movie title<br>
+</p>
+<h2>Most popular movies</h2>
+<p>
+Movie poster, Movie title<br>
+</p>
+<h2>Most commented movies</h2>
+<p>
+Movie poster, Movie title<br>
+</p>
+<h2>Genres</h2>
