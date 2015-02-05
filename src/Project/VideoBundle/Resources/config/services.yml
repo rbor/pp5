@@ -7,3 +7,8 @@ services:
      arguments:
      - %dotpay_id%
      - %dotpay_pin%
+    project_user.registration.form.type:
+        class: Project\VideoBundle\Form\Type\RegistrationFormType
+        arguments: [%fos_user.model.user.class%]
+        tags:
+            - { name: form.type, alias: project_user_registration }

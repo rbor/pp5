@@ -21,7 +21,7 @@ class PaymentController extends Controller
 			'firstname' => 'Imie',
 			'lastname' => 'Nazwisko',
 			'email' => 'borusiewicz.radek@gmail.com',
-			'URLC' => 'http://v-ie.uek.krakow.pl/~s175714/app_dev.php/payment/handle'
+			'URLC' => 'http://localhost/pp5/web/app_dev.php/payment/handle'
 		);
 		
 		$params = http_build_query($data);
