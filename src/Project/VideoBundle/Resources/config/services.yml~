@@ -1,0 +1,7 @@
+services:
+#    project_video.example:
+#        class: Project\VideoBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]
+    payment.handler:
+    class: Project\VideoBundle\Payment\PaymentHandler
+    arguments: [%dotpay_id%, %dotpay_pin%]
