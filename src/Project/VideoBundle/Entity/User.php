@@ -126,4 +126,41 @@ class User extends BaseUser
     {
         return $this->comments;
     }
+    /**
+    * @ORM\OneToMany(targetEntity="Project\VideoBundle\Entity\OrderCart", mappedBy="user_id")
+    */
+    protected $orders;
+
+    /**
+     * Add orders
+     *
+     * @param \Project\VideoBundle\Entity\OrderCart $orders
+     * @return User
+     */
+    public function addOrder(\Project\VideoBundle\Entity\OrderCart $orders)
+    {
+        $this->orders[] = $orders;
+
+        return $this;
+    }
+
+    /**
+     * Remove orders
+     *
+     * @param \Project\VideoBundle\Entity\OrderCart $orders
+     */
+    public function removeOrder(\Project\VideoBundle\Entity\OrderCart $orders)
+    {
+        $this->orders->removeElement($orders);
+    }
+
+    /**
+     * Get orders
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getOrders()
+    {
+        return $this->orders;
+    }
 }

@@ -5,12 +5,12 @@ namespace Project\VideoBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Comment
+ * OrderCart
  *
  * @ORM\Table()
  * @ORM\Entity
  */
-class Comment
+class OrderCart
 {
     /**
      * @var integer
@@ -29,11 +29,25 @@ class Comment
     private $movieId;
 
     /**
+     * @var float
+     *
+     * @ORM\Column(name="price", type="float")
+     */
+    private $price;
+
+    /**
      * @var string
      *
-     * @ORM\Column(name="value", type="string", length=255)
+     * @ORM\Column(name="status", type="string", length=255)
      */
-    private $value;
+    private $status;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="expired_date", type="datetime")
+     */
+    private $expiredDate;
 
     /**
      * @var integer
@@ -57,7 +71,7 @@ class Comment
      * Set movieId
      *
      * @param integer $movieId
-     * @return Comment
+     * @return OrderCart
      */
     public function setMovieId($movieId)
     {
@@ -77,33 +91,79 @@ class Comment
     }
 
     /**
-     * Set value
+     * Set price
      *
-     * @param string $value
-     * @return Comment
+     * @param float $price
+     * @return OrderCart
      */
-    public function setValue($value)
+    public function setPrice($price)
     {
-        $this->value = $value;
+        $this->price = $price;
 
         return $this;
     }
 
     /**
-     * Get value
+     * Get price
+     *
+     * @return float 
+     */
+    public function getPrice()
+    {
+        return $this->price;
+    }
+
+    /**
+     * Set status
+     *
+     * @param string $status
+     * @return OrderCart
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+
+    /**
+     * Get status
      *
      * @return string 
      */
-    public function getValue()
+    public function getStatus()
     {
-        return $this->value;
+        return $this->status;
+    }
+
+    /**
+     * Set expiredDate
+     *
+     * @param \DateTime $expiredDate
+     * @return OrderCart
+     */
+    public function setExpiredDate($expiredDate)
+    {
+        $this->expiredDate = $expiredDate;
+
+        return $this;
+    }
+
+    /**
+     * Get expiredDate
+     *
+     * @return \DateTime 
+     */
+    public function getExpiredDate()
+    {
+        return $this->expiredDate;
     }
 
     /**
      * Set userId
      *
      * @param integer $userId
-     * @return Comment
+     * @return OrderCart
      */
     public function setUserId($userId)
     {
@@ -122,16 +182,22 @@ class Comment
         return $this->userId;
     }
     /**
-    * @ORM\ManyToOne(targetEntity="Project\VideoBundle\Entity\User", inversedBy="comments")
+    * @ORM\ManyToOne(targetEntity="Project\VideoBundle\Entity\User", inversedBy="orders")
     * @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=false)
     */
     protected $user;
+    /** 
+    * @ORM\ManyToOne(targetEntity="Project\VideoBundle\Entity\Movie", inversedBy="movies")
+    * @ORM\JoinColumn(name="movie_id", referencedColumnName="id", nullable=false)
+    */
+    protected $movie;
+
 
     /**
      * Set user
      *
      * @param \Project\VideoBundle\Entity\User $user
-     * @return Comment
+     * @return OrderCart
      */
     public function setUser(\Project\VideoBundle\Entity\User $user)
     {
@@ -149,31 +215,27 @@ class Comment
     {
         return $this->user;
     }
-    /** @ORM\ManyToOne(targetEntity="Project\VideoBundle\Entity\Movie", inversedBy="comments")
-    * @ORM\JoinColumn(name="movie_id", referencedColumnName="id", nullable=false)
-    */
-    protected $movies;
 
     /**
-     * Set movies
+     * Set movie
      *
-     * @param \Project\VideoBundle\Entity\Movie $movies
-     * @return Comment
+     * @param \Project\VideoBundle\Entity\Movie $movie
+     * @return OrderCart
      */
-    public function setMovies(\Project\VideoBundle\Entity\Movie $movies)
+    public function setMovie(\Project\VideoBundle\Entity\Movie $movie)
     {
-        $this->movies = $movies;
+        $this->movie = $movie;
 
         return $this;
     }
 
     /**
-     * Get movies
+     * Get movie
      *
      * @return \Project\VideoBundle\Entity\Movie 
      */
-    public function getMovies()
+    public function getMovie()
     {
-        return $this->movies;
+        return $this->movie;
     }
 }

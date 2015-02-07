@@ -123,7 +123,34 @@ class Comment
     }
     /**
     * @ORM\ManyToOne(targetEntity="Project\VideoBundle\Entity\User", inversedBy="comments")
-    * @ORM\JoinColumn(name="id", referencedColumnName="user_id", nullable=false)
+    * @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=false)
     */
     protected $user;
+
+    /**
+     * Set user
+     *
+     * @param \Project\VideoBundle\Entity\User $user
+     * @return Comment
+     */
+    public function setUser(\Project\VideoBundle\Entity\User $user)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \Project\VideoBundle\Entity\User 
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+    /** @ORM\ManyToOne(targetEntity="Project\VideoBundle\Entity\Movie", inversedBy="comments")
+    * @ORM\JoinColumn(name="movie_id", referencedColumnName="id", nullable=false)
+    */
+    protected $movies;
 }
