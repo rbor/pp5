@@ -88,4 +88,42 @@ class User extends BaseUser
     {
         return $this->id;
     }
+
+    /**
+    * @ORM\OneToMany(targetEntity="Project\VideoBundle\Entity\Comment", mappedBy="user_id")
+    */
+    protected $comments;
+
+    /**
+     * Add comments
+     *
+     * @param \Project\VideoBundle\Entity\Comment $comments
+     * @return User
+     */
+    public function addComment(\Project\VideoBundle\Entity\Comment $comments)
+    {
+        $this->comments[] = $comments;
+
+        return $this;
+    }
+
+    /**
+     * Remove comments
+     *
+     * @param \Project\VideoBundle\Entity\Comment $comments
+     */
+    public function removeComment(\Project\VideoBundle\Entity\Comment $comments)
+    {
+        $this->comments->removeElement($comments);
+    }
+
+    /**
+     * Get comments
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getComments()
+    {
+        return $this->comments;
+    }
 }
