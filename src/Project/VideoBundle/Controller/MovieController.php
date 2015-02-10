@@ -9,22 +9,19 @@ class MovieController extends Controller
 {
     public function movieAction($movie)
     {
-    	$url = 'http://www.omdbapi.com/?t='.$movie.'&y=&plot=full&r=json';
-    	$json = file_get_contents($url);
-		$data = json_decode($json, TRUE);
+        $movies = $this->getDoctrine()
+        ->getRepository('ProjectVideoBundle:Movie')
+        ->findByimdb_id($movie);
 
-		$title = $data['Title'];
-		$description = $data['Plot'];
-		$actors = $data['Actors'];
-        
-        if($data['Poster'] != 'N/A')
-            $poster = $data['Poster'];
-        else
-            $poster = null;
+		$title = $movies[0]->getTitle();
+        $plot = $movies[0]->getPlot();
+        $actors = $movies[0]->getActors();
+        $poster = $movies[0]->getPoster();
+        // var_dump($title);die();
 
         return $this->render('ProjectVideoBundle:Movie:movie.html.twig', array(
         	'title' 	=> $title,
-        	'desc' 		=> $description,
+        	'plot' 		=> $plot,
         	'actors' 	=> $actors,
         	'poster' 	=> $poster
         	 ));
