@@ -1,8 +1,23 @@
 <p>It's alive !</p>
 
+<a href="/pp5/web/app_dev.php/register">Rejestracja</a>
+
+{% if is_granted("ROLE_USER") %}
+    Zalogowany jako: {{ app.user.username }}
+	<a href="/pp5/web/app_dev.php/logout">Wyloguj</a>
+{% else %}
+	<a href="/pp5/web/app_dev.php/login">Logowanie</a>
+{% endif %}
+
 {% if is_granted("ROLE_USER") %}
     Zalogowany jako: {{ app.user.username }}
 {% endif %}
+
+<ul>
+{% for item in movies %}
+<li><img src='{{item.poster}}'> {{item.title}}</li>
+{% endfor %}
+</ul>
 
 <h2>Movies</h2>
 <p>

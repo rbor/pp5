@@ -18,9 +18,9 @@ project_movie_find:
     path:     /find
     defaults: { _controller: ProjectVideoBundle:Movie:find }
 
-project_movie_find:
-    path:     /done
-    defaults: { _controller: ProjectVideoBundle:Movie:createDatabaseStuff }
+project_movie_add:
+    path:     /add/{movieId}
+    defaults: { _controller: ProjectVideoBundle:Movie:addMovie }
 
 project_movie_payment_pay:
     path: /payment/pay

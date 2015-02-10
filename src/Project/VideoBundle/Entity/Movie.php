@@ -35,6 +35,33 @@ class Movie
      */
     private $price;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="title", type="string")
+     */
+    private $title;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="poster", type="string")
+     */
+    private $poster;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="plot", type="text")
+     */
+    private $plot;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="actors", type="string")
+     */
+    private $actors;
 
     /**
      * Get id
@@ -172,5 +199,97 @@ class Movie
     public function getComments()
     {
         return $this->comments;
+    }
+
+    /**
+     * Set title
+     *
+     * @param string $title
+     * @return Movie
+     */
+    public function setTitle($title)
+    {
+        $this->title = $title;
+
+        return $this;
+    }
+
+    /**
+     * Get title
+     *
+     * @return string 
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    /**
+     * Set poster
+     *
+     * @param string $poster
+     * @return Movie
+     */
+    public function setPoster($poster)
+    {
+        $this->poster = $poster;
+
+        return $this;
+    }
+
+    /**
+     * Get poster
+     *
+     * @return string 
+     */
+    public function getPoster()
+    {
+        return $this->poster;
+    }
+
+    /**
+     * Set plot
+     *
+     * @param string $plot
+     * @return Movie
+     */
+    public function setPlot($plot)
+    {
+        $this->plot = $plot;
+
+        return $this;
+    }
+
+    /**
+     * Get plot
+     *
+     * @return string 
+     */
+    public function getPlot()
+    {
+        return $this->plot;
+    }
+
+    /**
+     * Set actors
+     *
+     * @param string $actors
+     * @return Movie
+     */
+    public function setActors($actors)
+    {
+        $this->actors = $actors;
+
+        return $this;
+    }
+
+    /**
+     * Get actors
+     *
+     * @return string 
+     */
+    public function getActors()
+    {
+        return $this->actors;
     }
 }
