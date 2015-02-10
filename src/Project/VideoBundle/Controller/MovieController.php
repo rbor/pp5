@@ -4,6 +4,7 @@ namespace Project\VideoBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Project\VideoBundle\Entity\Movie;
+use Project\VideoBundle\Entity\Comment;
 
 class MovieController extends Controller
 {
@@ -17,12 +18,19 @@ class MovieController extends Controller
         $plot = $movies[0]->getPlot();
         $actors = $movies[0]->getActors();
         $poster = $movies[0]->getPoster();
+        $price = $movies[0]->getPrice();
+
+        $comments = $this->getDoctrine()
+        ->getRepository('ProjectVideoBundle:Comment')
+        ->findBymovie_id($movies[0]->getId());
 
         return $this->render('ProjectVideoBundle:Movie:movie.html.twig', array(
         	'title' 	=> $title,
         	'plot' 		=> $plot,
         	'actors' 	=> $actors,
-        	'poster' 	=> $poster
+            'poster'    => $poster,
+        	'price' 	=> $price,
+            'comments'  => $comments
         	 ));
     }
 
@@ -52,6 +60,21 @@ class MovieController extends Controller
 
         $em = $this->getDoctrine()->getManager();
         $em->persist($movie);
+        $em->flush();
+
+        return $this->render('ProjectVideoBundle:Movie:done.html.twig');
+    }
+
+    public function addCommentAction(){
+        $comment = new Comment();
+
+        $comment->setMovieId(3);
+        // var_dump($comment->getMovieId());die();
+        $comment->setValue('Ja też czekam na druga czesc.');
+        $comment->setUserId(1);
+
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($comment);
         $em->flush();
 
         return $this->render('ProjectVideoBundle:Movie:done.html.twig');

@@ -10,21 +10,13 @@ project_movie_movie:
     path:     /movie/{movie}
     defaults: { _controller: ProjectVideoBundle:Movie:movie }
 
-project_movie_id:
-    path:     /id/{movie}
-    defaults: { _controller: ProjectVideoBundle:Movie:id }
-
-project_movie_search:
-    path:     /search/{movie}
-    defaults: { _controller: ProjectVideoBundle:Movie:search }
-
-project_movie_find:
-    path:     /find
-    defaults: { _controller: ProjectVideoBundle:Movie:find }
-
 project_movie_add:
     path:     /add/{movieId}
     defaults: { _controller: ProjectVideoBundle:Movie:addMovie }
+
+project_video_main:
+    path:     /comment
+    defaults: { _controller: ProjectVideoBundle:Movie:addComment }
 
 project_movie_payment_pay:
     path: /payment/pay
