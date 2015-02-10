@@ -22,9 +22,9 @@ class Movie
     private $id;
 
     /**
-     * @var integer
+     * @var string
      *
-     * @ORM\Column(name="imdb_id", type="integer")
+     * @ORM\Column(name="imdb_id", type="string")
      */
     private $imdbId;
 
@@ -49,7 +49,7 @@ class Movie
     /**
      * Set imdbId
      *
-     * @param integer $imdbId
+     * @param string $imdbId
      * @return Movie
      */
     public function setImdbId($imdbId)
@@ -62,7 +62,7 @@ class Movie
     /**
      * Get imdbId
      *
-     * @return integer 
+     * @return string 
      */
     public function getImdbId()
     {
