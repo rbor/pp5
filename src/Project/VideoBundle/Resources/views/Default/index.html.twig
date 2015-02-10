@@ -15,7 +15,10 @@
 
 <ul>
 {% for item in movies %}
-<li><img src='{{item.poster}}'> {{item.title}}</li>
+	<li>
+		<a href='/pp5/web/app_dev.php/movie/{{ item.imdbId }}'><img src='{{item.poster}}'></a> 
+		<a href='/pp5/web/app_dev.php/movie/{{ item.imdbId }}'>{{item.title}}</a>
+	</li>
 {% endfor %}
 </ul>
 
