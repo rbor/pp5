@@ -17,4 +17,9 @@ class DefaultController extends Controller
         	'movies' => $movies
         	));
     }
+
+    public function mainAction()
+    {
+        return $this->render('ProjectVideoBundle:Default:main.html.twig');
+    }
 }

@@ -1,19 +1,17 @@
-<p>It's alive !</p>
+{% block javascripts %}
+	<script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+	<script>
 
-{% if is_granted("ROLE_USER") %}
-    Zalogowany jako: {{ app.user.username }}
-{% endif %}
+		var movies = ['tt0120338', 'tt0112573', 'tt0060315', 'tt0099685', 'tt1375666', 'tt0172495', 'tt0112641', 'tt0078748'];
 
-<h2>Movies</h2>
-<p>
-Movie poster, Movie title<br>
-</p>
-<h2>Most popular movies</h2>
-<p>
-Movie poster, Movie title<br>
-</p>
-<h2>Most commented movies</h2>
-<p>
-Movie poster, Movie title<br>
-</p>
-<h2>Genres</h2>
+		$(document).ready(function(){
+			for(var i=0; i<movies.length; i++){
+				$.ajax({
+				  type: "POST",
+				  url: '/pp5/web/app_dev.php/add/' + movies[i]
+				});
+			}
+			alert('Hello');
+		});
+	</script>
+{% endblock %}
