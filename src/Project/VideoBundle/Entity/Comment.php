@@ -22,9 +22,9 @@ class Comment
     private $id;
 
     /**
-     * @var string
+     * @var integer
      *
-     * @ORM\Column(name="movie_id", type="string")
+     * @ORM\Column(name="movie_id", type="integer")
      */
     private $movieId;
 
@@ -56,7 +56,7 @@ class Comment
     /**
      * Set movieId
      *
-     * @param string $movieId
+     * @param integer $movieId
      * @return Comment
      */
     public function setMovieId($movieId)
@@ -69,7 +69,7 @@ class Comment
     /**
      * Get movieId
      *
-     * @return string 
+     * @return integer 
      */
     public function getMovieId()
     {
