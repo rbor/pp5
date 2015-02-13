@@ -4,10 +4,19 @@
 
 {% block body %}
 
+{% if is_granted("ROLE_USER") %}
+    Zalogowany jako: {{ app.user.username }}
+	<a href="/pp5/web/app_dev.php/logout">Wyloguj</a>
+{% else %}
+	<a href="/pp5/web/app_dev.php/register">Rejestracja</a>
+	<a href="/pp5/web/app_dev.php/login">Logowanie</a>
+{% endif %}
+
+<p>
 {% if poster is defined %}
 <img src='{{ poster }}'/>
 {% endif %}
-
+</p>
 <h2>Title: {{ title }}</h2>
 <p>Description: {{ plot }}</p>
 <p>Actors: {{ actors }}</p>
