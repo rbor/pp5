@@ -292,4 +292,8 @@ class Movie
     {
         return $this->actors;
     }
+
+    public function __toString(){
+        return $this->title;
+    }
 }

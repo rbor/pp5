@@ -3,8 +3,11 @@
 namespace Project\VideoBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Project\VideoBundle\Entity\Movie;
 use Project\VideoBundle\Entity\Comment;
+use Project\VideoBundle\Form\CommentType;
 
 class MovieController extends Controller
 {
@@ -24,13 +27,18 @@ class MovieController extends Controller
         ->getRepository('ProjectVideoBundle:Comment')
         ->findBymovie_id($movies[0]->getId());
 
+        $user = $this->get('security.context')->getToken()->getUser();
+        $userId = $user->getId();
+
         return $this->render('ProjectVideoBundle:Movie:movie.html.twig', array(
         	'title' 	=> $title,
         	'plot' 		=> $plot,
         	'actors' 	=> $actors,
             'poster'    => $poster,
         	'price' 	=> $price,
-            'comments'  => $comments
+            'comments'  => $comments,
+            'movie_id'  => $movie,
+            'user_id'   => $userId
         	 ));
     }
 
@@ -69,7 +77,6 @@ class MovieController extends Controller
         $comment = new Comment();
 
         $comment->setMovieId(3);
-        // var_dump($comment->getMovieId());die();
         $comment->setValue('Ja też czekam na druga czesc.');
         $comment->setUserId(1);
 
@@ -78,6 +85,44 @@ class MovieController extends Controller
         $em->flush();
 
         return $this->render('ProjectVideoBundle:Movie:done.html.twig');
+    }
+
+    public function commentAction(Request $request, $userId, $movieId){
+        
+        $comment = new Comment();
+        $movie = new Movie();
+
+        $form = $this->createForm(
+            new CommentType(),
+            $comment
+        );
+
+        if ($request->isMethod('POST') && $form->handleRequest($request)){
+            if ($form->isValid()) {
+                $comment->setUserId($userId);
+                $comment->setMovieId($movieId);
+
+                $user = $this->getUser();
+                $comment->setUser($user);
+
+                $x = $this->getDoctrine()
+                ->getRepository('ProjectVideoBundle:Movie')
+                ->findByimdb_id($movieId);
+                $movie = $x[0];
+
+                $comment->setMovies($movie);
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($comment);
+                $em->flush();
+                
+                return new RedirectResponse($this->generateUrl('project_movie_movie', array('movie' => $movieId)));
+
+                }
+            }
+
+        return $this->render('ProjectVideoBundle:Movie:comment.html.twig', array(
+            'form' => $form->createView()
+        ));
     }
 
 }

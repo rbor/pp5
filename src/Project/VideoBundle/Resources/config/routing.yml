@@ -14,9 +14,9 @@ project_movie_add:
     path:     /add/{movieId}
     defaults: { _controller: ProjectVideoBundle:Movie:addMovie }
 
-project_video_main:
-    path:     /comment
-    defaults: { _controller: ProjectVideoBundle:Movie:addComment }
+project_video_comment:
+    path:     /comment/{userId}/{movieId}
+    defaults: { _controller: ProjectVideoBundle:Movie:comment }
 
 project_movie_payment_pay:
     path: /payment/pay

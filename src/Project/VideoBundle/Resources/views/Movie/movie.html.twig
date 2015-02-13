@@ -11,31 +11,15 @@
 <h2>Title: {{ title }}</h2>
 <p>Description: {{ plot }}</p>
 <p>Actors: {{ actors }}</p>
-<p>Price: {{ price }} PLN <button id="rent">Rent</button></p>
+<p>Price: {{ price }} PLN <button id="rent">Add to cart</button></p>
 
-{% if is_granted("ROLE_USER") %}
-<button id="add_review">Add review</button>
-{% endif %}
-<div id="reviews">
 	<h3>Reviews</h3>
+<div id="reviews">
 	{% for item in comments %}
 	<p>{{item.value}}</p>
 	{% endfor %}
 </div>
 
-{% endblock %}
+<a href="/pp5/web/app_dev.php/comment/{{user_id}}/{{movie_id}}"><button id="rent">Add new review</button></a>
 
-{% block javascripts %}
-	<script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
-
-	{% if is_granted("ROLE_USER") %}
-	<script>
-		$(document).ready(function(){
-			$('#reviews').hide();
-			$('#add_review').click(function(){
-				$('#reviews').show();
-			})
-		});
-	</script>
-	{% endif %}
 {% endblock %}
