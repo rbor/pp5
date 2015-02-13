@@ -16,7 +16,7 @@
 <h3>Reviews</h3>
 <div id="reviews">
 	{% for item in comments %}
-	<p>{{item.value}}</p>
+	<p>{{item.user.username}}: {{item.value}}</p>
 	{% endfor %}
 </div>
 
