@@ -28,6 +28,21 @@ class MovieController extends Controller
         ->findBymovie_id($movies[0]->getId());
 
         $user = $this->get('security.context')->getToken()->getUser();
+        
+        if($user == 'anon.'){
+            return $this->render('ProjectVideoBundle:Movie:movie.html.twig', array(
+            'title'     => $title,
+            'plot'      => $plot,
+            'actors'    => $actors,
+            'poster'    => $poster,
+            'price'     => $price,
+            'comments'  => $comments,
+            'movie_id'  => null,
+            'user_id'   => null
+             ));
+        }
+            // var_dump($title);
+
         $userId = $user->getId();
 
         return $this->render('ProjectVideoBundle:Movie:movie.html.twig', array(
