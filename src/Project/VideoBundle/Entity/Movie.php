@@ -127,6 +127,10 @@ class Movie
     */
     protected $comments;
     /**
+    * @ORM\OneToMany(targetEntity="Project\VideoBundle\Entity\Genre", mappedBy="movie_id")
+    */
+    protected $genres;
+    /**
      * Constructor
      */
     public function __construct()
@@ -295,5 +299,38 @@ class Movie
 
     public function __toString(){
         return $this->title;
+    }
+
+    /**
+     * Add genres
+     *
+     * @param \Project\VideoBundle\Entity\Genre $genres
+     * @return Movie
+     */
+    public function addGenre(\Project\VideoBundle\Entity\Genre $genres)
+    {
+        $this->genres[] = $genres;
+
+        return $this;
+    }
+
+    /**
+     * Remove genres
+     *
+     * @param \Project\VideoBundle\Entity\Genre $genres
+     */
+    public function removeGenre(\Project\VideoBundle\Entity\Genre $genres)
+    {
+        $this->genres->removeElement($genres);
+    }
+
+    /**
+     * Get genres
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getGenres()
+    {
+        return $this->genres;
     }
 }

@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * OrderCart
  *
- * @ORM\Table()
+ * @ORM\Table(name="orderCarts")
  * @ORM\Entity
  */
 class OrderCart
@@ -186,9 +186,56 @@ class OrderCart
     * @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=false)
     */
     protected $user;
-    /** @ORM\ManyToOne(targetEntity="Project\VideoBundle\Entity\Movie", inversedBy="movies")
+    /** 
+    * @ORM\ManyToOne(targetEntity="Project\VideoBundle\Entity\Movie", inversedBy="movies")
     * @ORM\JoinColumn(name="movie_id", referencedColumnName="id", nullable=false)
     */
     protected $movie;
 
+
+    /**
+     * Set user
+     *
+     * @param \Project\VideoBundle\Entity\User $user
+     * @return OrderCart
+     */
+    public function setUser(\Project\VideoBundle\Entity\User $user)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \Project\VideoBundle\Entity\User 
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * Set movie
+     *
+     * @param \Project\VideoBundle\Entity\Movie $movie
+     * @return OrderCart
+     */
+    public function setMovie(\Project\VideoBundle\Entity\Movie $movie)
+    {
+        $this->movie = $movie;
+
+        return $this;
+    }
+
+    /**
+     * Get movie
+     *
+     * @return \Project\VideoBundle\Entity\Movie 
+     */
+    public function getMovie()
+    {
+        return $this->movie;
+    }
 }

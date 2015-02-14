@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Movie
  *
- * @ORM\Table()
+ * @ORM\Table(name="movies")
  * @ORM\Entity
  */
 class Movie
@@ -126,6 +126,10 @@ class Movie
     * @ORM\OneToMany(targetEntity="Project\VideoBundle\Entity\Comment", mappedBy="movie_id")
     */
     protected $comments;
+    /**
+    * @ORM\OneToMany(targetEntity="Project\VideoBundle\Entity\Genre", mappedBy="movie_id")
+    */
+    protected $genres;
     /**
      * Constructor
      */
@@ -268,5 +272,32 @@ class Movie
     public function getPlot()
     {
         return $this->plot;
+    }
+
+    /**
+     * Set actors
+     *
+     * @param string $actors
+     * @return Movie
+     */
+    public function setActors($actors)
+    {
+        $this->actors = $actors;
+
+        return $this;
+    }
+
+    /**
+     * Get actors
+     *
+     * @return string 
+     */
+    public function getActors()
+    {
+        return $this->actors;
+    }
+
+    public function __toString(){
+        return $this->title;
     }
 }
