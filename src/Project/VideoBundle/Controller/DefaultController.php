@@ -22,4 +22,9 @@ class DefaultController extends Controller
     {
         return $this->render('ProjectVideoBundle:Default:main.html.twig');
     }
+
+    public function genreAction()
+    {
+        return $this->render('ProjectVideoBundle:Default:genre.html.twig');
+    }
 }

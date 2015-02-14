@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Project\VideoBundle\Entity\Movie;
+use Project\VideoBundle\Entity\Genre;
 use Project\VideoBundle\Entity\Comment;
 use Project\VideoBundle\Form\CommentType;
 
@@ -138,6 +139,38 @@ class MovieController extends Controller
         return $this->render('ProjectVideoBundle:Movie:comment.html.twig', array(
             'form' => $form->createView()
         ));
+    }
+
+    public function addGenreAction($movieId){
+        $url = 'http://www.omdbapi.com/?i='.$movieId.'&y=&plot=full&r=json';
+        $json = file_get_contents($url);
+        $data = json_decode($json, TRUE);
+
+        $genres = explode(', ', $data['Genre']);
+
+        // var_dump($genres);die();
+
+        $x = $this->getDoctrine()
+            ->getRepository('ProjectVideoBundle:Movie')
+            ->findByimdb_id($movieId);
+        $movie = $x[0];
+
+        // var_dump($x);die();
+
+        foreach ($genres as $item) {
+            // var_dump($item);die();
+            $movieGenre = new Genre();
+        
+            $movieGenre->setMovie($movie);
+            $movieGenre->setGenre($item);
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($movieGenre);
+            $em->flush();
+        }
+
+        // return $this->render('ProjectVideoBundle:Movie:done.html.twig');
+        return true;
     }
 
 }

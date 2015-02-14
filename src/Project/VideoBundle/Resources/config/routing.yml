@@ -2,9 +2,13 @@ project_video_index:
     path:     /
     defaults: { _controller: ProjectVideoBundle:Default:index }
 
-project_video_main:
+project_video_download:
     path:     /download
     defaults: { _controller: ProjectVideoBundle:Default:main }
+
+project_video_download_genres:
+    path:     /genre
+    defaults: { _controller: ProjectVideoBundle:Default:genre }
 
 project_movie_movie:
     path:     /movie/{movie}
@@ -13,6 +17,10 @@ project_movie_movie:
 project_movie_add:
     path:     /add/{movieId}
     defaults: { _controller: ProjectVideoBundle:Movie:addMovie }
+
+project_movie_add_genre:
+    path:     /add_genre/{movieId}
+    defaults: { _controller: ProjectVideoBundle:Movie:addGenre }
 
 project_video_comment:
     path:     /comment/{userId}/{movieId}
