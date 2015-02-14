@@ -13,8 +13,20 @@ class DefaultController extends Controller
         ->getRepository('ProjectVideoBundle:Movie')
         ->findAll();
 
+        $genres = $this->getDoctrine()
+        ->getRepository('ProjectVideoBundle:Genre')
+        ->findAll();
+
+        $movieGenres = array();
+
+        foreach ($genres as $item) {
+            $movieGenres[] = $item->getGenre();
+        }
+        // var_dump(array_unique($movieGenres));die();
+
         return $this->render('ProjectVideoBundle:Default:index.html.twig', array(
-        	'movies' => $movies
+        	'movies' => $movies,
+            'genres' => array_unique($movieGenres)
         	));
     }
 

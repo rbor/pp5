@@ -29,7 +29,7 @@ class MovieController extends Controller
         ->findBymovie_id($movies[0]->getId());
 
         $user = $this->get('security.context')->getToken()->getUser();
-        
+
         if($user == 'anon.'){
             return $this->render('ProjectVideoBundle:Movie:movie.html.twig', array(
             'title'     => $title,
@@ -171,6 +171,40 @@ class MovieController extends Controller
 
         // return $this->render('ProjectVideoBundle:Movie:done.html.twig');
         return true;
+    }
+
+    public function genreAction($genre){
+
+        $x = $this->getDoctrine()
+            ->getRepository('ProjectVideoBundle:Genre')
+            ->findBygenre($genre);
+
+        // var_dump($x[0]->getMovieId());die();
+
+        $moviesId = array();
+
+        foreach ($x as $item) {
+            $moviesId[] = $item->getMovieId();
+        }
+        
+        // var_dump($moviesId);die();
+
+        $movies = array();
+        $imbdIds = array();
+
+        foreach ($moviesId as $item) {
+            $x = $this->getDoctrine()
+            ->getRepository('ProjectVideoBundle:Movie')
+            ->findByid($item);
+
+            $movies[] =  array($x[0]->getImdbId(), $x[0]->getPoster());
+        }
+        
+        // var_dump($movies);die();
+        return $this->render('ProjectVideoBundle:Movie:genre.html.twig', array(
+            'movies'    => $movies,
+            ));
+
     }
 
 }

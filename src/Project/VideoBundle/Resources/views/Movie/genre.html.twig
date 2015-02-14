@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Genre{% endblock %}
+
+{% block body %}
+
+<ul>
+{% for item in movies %}
+	<li><a href='/pp5/web/app_dev.php/movie/{{ item.0 }}'><img src='{{item.1}}'></a> </li>
+{% endfor %}
+</ul>
+{% endblock %}
