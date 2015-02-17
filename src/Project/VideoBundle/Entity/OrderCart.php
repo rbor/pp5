@@ -50,6 +50,13 @@ class OrderCart
     private $expiredDate;
 
     /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="order_date", type="datetime")
+     */
+    private $orderDate;
+
+    /**
      * @var integer
      *
      * @ORM\Column(name="user_id", type="integer")
