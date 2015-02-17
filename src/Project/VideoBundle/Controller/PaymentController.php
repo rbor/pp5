@@ -12,17 +12,20 @@ class PaymentController extends Controller
 {
     public function payAction($total)
     {
-    	var_dump($total);die();
-
+    	$user = $this->get('security.context')->getToken()->
+    	getUser();
+    	$firstname = $user->getFirstname();
+    	$lastname = $user->getLastname();
+    	$email = $user->getEmail();
         $data=array(
 			'id' => 72890,
-			'amount' => 222.52,
+			'amount' => $total,
 			'currency' => 'PLN',
-			'description' => 'Zaplata',
+			'description' => 'wypozyczenie',
 			'control' => 'FV-153255',
-			'firstname' => 'Imie',
-			'lastname' => 'Nazwisko',
-			'email' => 'borusiewicz.radek@gmail.com',
+			'firstname' => $firstname,
+			'lastname' => $lastname,
+			'email' => $email,
 			'URLC' => 'http://localhost/pp5/web/app_dev.php/payment/handle'
 		);
 		
