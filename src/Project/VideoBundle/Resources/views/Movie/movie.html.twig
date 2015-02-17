@@ -4,35 +4,53 @@
 
 {% block body %}
 
-<p>
-	{% if poster is defined %}
-		<img src='{{ poster }}'/>
-	{% endif %}
-</p>
-<h2>Title: {{ title }}</h2>
-<p>Description: {{ plot }}</p>
-<p>Actors: {{ actors }}</p>
-<p>Price: {{ price }} PLN <a href="{{path('project_movie_add_item', {'item': movie_id})}}"><button id="rent">Add to cart</button></a></p>
-
-<h3>Cart</h3>
-<ul>
-	{% for item in cart %}
-		<li>{{ item }}</li>
-	{% endfor %}
-</ul>
-<p>Total: {{cart|length}} </p>
-
-PATH: {{path('project_video_index')}}
-
-<h3>Reviews</h3>
-<div id="reviews">
-	{% for item in comments %}
-	<p>{{item.user.username}}: {{item.value}}</p>
-	{% endfor %}
+<div class="row">
+	<div class="col-md-12">
+		<h2>{{ title }}</h2>
+	</div>
 </div>
 
-{% if is_granted("ROLE_USER") %}
-<a href="{{ path('project_video_comment', {'userId': user_id, 'movieId': movie_id} )}}"><button id="rent">Add new review</button></a>
-{% endif %}
+<div class="row">
+	<div class="col-md-12">
+		{% if poster is defined %}
+			<img src='{{ poster }}'/>
+		{% endif %}
+	<div>
+</div>
+
+<div class="row">
+	<div class="col-md-12">
+		<p class="text-justify">Description: {{ plot }}</p>
+		<p>Actors: {{ actors }}</p>
+		<p>Price: {{ price }} PLN <a href="{{path('project_movie_add_item', {'item': movie_id})}}"><button id="rent">Add to cart</button></a></p>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-md-12">
+		<h3>Cart</h3>
+			<ul>
+				{% for item in cart %}
+					<li>{{ item }}</li>
+				{% endfor %}
+			</ul>
+		<p>Total: {{cart|length}} </p>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-md-12">
+		<h3>Reviews</h3>
+			<div id="reviews">
+				{% for item in comments %}
+					<p>{{item.user.username}}: {{item.value}}</p>
+				{% endfor %}
+			</div>
+
+		{% if is_granted("ROLE_USER") %}
+			<a href="{{ path('project_video_comment', {'userId': user_id, 'movieId': movie_id} )}}"><button id="rent">Add new review</button></a>
+		{% endif %}
+	</div>
+</div>
 
 {% endblock %}
