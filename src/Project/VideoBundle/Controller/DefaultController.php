@@ -47,8 +47,12 @@ class DefaultController extends Controller
         // Ids of 4 most commented movies
         $mostCommentedQuatro = array();
 
-        for($i = 0; $i<4; $i++){
-            $mostCommentedTrio[] = $popularByComments[$i];       
+        if($popularByComments > 4){
+            for($i = 0; $i<4; $i++){
+                $mostCommentedTrio[] = $popularByComments[$i];       
+            }
+        } else {
+            $mostCommentedQuatro = $popularByComments;
         }
 
         // Data of 4 most commented movies
