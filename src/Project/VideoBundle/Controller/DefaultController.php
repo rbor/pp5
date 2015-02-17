@@ -44,14 +44,14 @@ class DefaultController extends Controller
             }
         }
 
-        // Ids of 3 most commented movies
-        $mostCommentedTrio = array();
+        // Ids of 4 most commented movies
+        $mostCommentedQuatro = array();
 
-        for($i = 0; $i<3; $i++){
+        for($i = 0; $i<4; $i++){
             $mostCommentedTrio[] = $popularByComments[$i];       
         }
 
-        // Data of 3 most commented movies
+        // Data of 4 most commented movies
         $mostCommentedMovies = array();
 
         foreach ($movies as $key => $value) {
