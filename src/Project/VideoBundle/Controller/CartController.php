@@ -47,7 +47,6 @@ class CartController extends Controller
 	public function removeItemAction($item){
 		$session = $this->getRequest()->getSession();
         $cart = $session->get('cart');
-        // var_dump($cart);die();
         $keyToDelete;
 
         foreach ($cart as $key => $value) {
@@ -55,10 +54,6 @@ class CartController extends Controller
 		     	$keyToDelete = $key;
         	}
         }
-
-        // var_dump($cart);
-        // var_dump($keyToDelete);
-        // die();
 
         unset($cart[$keyToDelete]);
         $session->set('cart', $cart);
@@ -72,8 +67,6 @@ class CartController extends Controller
 	public function cartAction(){
 		$session = $this->getRequest()->getSession();
         $cart = $session->get('cart');
-
-        // var_dump($cart);die();
 
         return $this->render('ProjectVideoBundle:Cart:cart.html.twig', array(
         	'cart' => $cart

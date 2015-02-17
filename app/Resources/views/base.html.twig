@@ -25,6 +25,10 @@
         .footer {
             margin-top: 20px;
         }
+
+        label{
+            width: 100px;
+        }
     </style>
     </head>
     <body>
@@ -45,6 +49,7 @@
                 </div>
             </div>
             {% block body %}{% endblock %}
+            {% block fos_user_content %}{% endblock %}
             <div class="row footer">
                 <div class="col-md-12">
                     This is Footer. Believe it!

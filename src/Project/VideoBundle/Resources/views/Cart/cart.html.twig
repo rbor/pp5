@@ -26,7 +26,11 @@
 {% if cart %}
 	<div class="row">
 		<div class="col-md-12">
-			<a href="{{ path('project_movie_payment_pay' )}}"><button id="pay">Pay</button></a>
+			{% if is_granted("ROLE_USER") %}
+				<a href="{{ path('project_movie_payment_pay' )}}"><button id="pay">Pay</button></a>
+			{% else %}
+				<a href="{{ path('project_video_index' )}}login"><button id="pay">Pay</button></a>
+			{% endif %}
 		</div>
 	</div>
 {% endif %}
