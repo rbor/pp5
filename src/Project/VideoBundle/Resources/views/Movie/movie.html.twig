@@ -6,10 +6,10 @@
 
 {% if is_granted("ROLE_USER") %}
     Zalogowany jako: {{ app.user.username }}
-	<a href="/pp5/web/app_dev.php/logout">Wyloguj</a>
+	<a href="{{ path('project_video_index') }}logout">Wyloguj</a>
 {% else %}
-	<a href="/pp5/web/app_dev.php/register">Rejestracja</a>
-	<a href="/pp5/web/app_dev.php/login">Logowanie</a>
+	<a href="{{ path('project_video_index') }}register">Rejestracja</a>
+	<a href="{{ path('project_video_index') }}login">Logowanie</a>
 {% endif %}
 
 <p>
@@ -20,7 +20,7 @@
 <h2>Title: {{ title }}</h2>
 <p>Description: {{ plot }}</p>
 <p>Actors: {{ actors }}</p>
-<p>Price: {{ price }} PLN <a href="/pp5/web/app_dev.php/add_item/{{ movie_id }}"><button id="rent">Add to cart</button></a></p>
+<p>Price: {{ price }} PLN <a href="{{path('project_movie_add_item', {'item': movie_id})}}"><button id="rent">Add to cart</button></a></p>
 
 <h3>Cart</h3>
 <ul>
@@ -32,7 +32,6 @@
 
 PATH: {{path('project_video_index')}}
 
-
 <h3>Reviews</h3>
 <div id="reviews">
 	{% for item in comments %}
@@ -41,7 +40,7 @@ PATH: {{path('project_video_index')}}
 </div>
 
 {% if is_granted("ROLE_USER") %}
-<a href="/pp5/web/app_dev.php/comment/{{user_id}}/{{movie_id}}"><button id="rent">Add new review</button></a>
+<a href="{{ path('project_video_comment', {'userId': user_id, 'movieId': movie_id} )}}"><button id="rent">Add new review</button></a>
 {% endif %}
 
 {% endblock %}

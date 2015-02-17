@@ -19,8 +19,8 @@
 <ul>
 {% for item in movies %}
 	<li>
-		<a href='/pp5/web/app_dev.php/movie/{{ item.imdbId }}'><img src='{{item.poster}}'></a> 
-		<a href='/pp5/web/app_dev.php/movie/{{ item.imdbId }}'>{{item.title}}</a>
+		<a href='{{ path('project_movie_movie', { 'movie': item.imdbId }) }}'><img src='{{item.poster}}'></a> 
+		<a href='{{ path('project_movie_movie', { 'movie': item.imdbId }) }}'>{{ item.title }}</a>
 	</li>
 {% endfor %}
 </ul>
@@ -42,7 +42,7 @@ Movie poster, Movie title<br>
 <h2>Genres</h2>
 <ul>
 {% for item in genres %}
-	<li><a href='/pp5/web/app_dev.php/genre/{{ item }}'>{{item}}</a></li>
+	<li><a href='{{ path('project_movie_genre', { 'genre': item }) }}'>{{item}}</a></li>
 {% endfor %}
 </ul>
 {% endblock %}
