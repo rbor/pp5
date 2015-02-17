@@ -27,7 +27,7 @@ class DefaultController extends Controller
         ->getRepository('ProjectVideoBundle:Comment')
         ->findAll();
 
-        // Movies by reviews
+        // Movies by comments
         $comments = array();
 
         foreach ($repository as $key => $value) {
@@ -36,6 +36,8 @@ class DefaultController extends Controller
 
         $comments = array_count_values($comments);
         arsort($comments);
+
+        // Ids of commented movies
         $popularByComments = array();
 
         foreach ($comments as $key => $value) {
