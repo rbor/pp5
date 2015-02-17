@@ -10,8 +10,8 @@
 	</div>
 </div>
 
-	{% for item in cart%}
-<div class="row">
+{% for item in cart%}
+	<div class="row">
 		<div class="col-md-3">
 			Ttitle: {{item.title}}
 			Price: {{item.price}} PLN
@@ -20,7 +20,15 @@
 			<a href="{{ path('project_movie_remove_item', {'item': item.imdb} )}}"><button id="remove_item">Remove</button></a>
 		</div>
 		<div class='col-md-8'></div>
-</div>
-	{% endfor %}
+	</div>
+{% endfor %}
+
+{% if cart %}
+	<div class="row">
+		<div class="col-md-12">
+			<a href="{{ path('project_movie_payment_pay' )}}"><button id="pay">Pay</button></a>
+		</div>
+	</div>
+{% endif %}
 
 {% endblock %}
