@@ -10,6 +10,10 @@ project_movie_genre:
     path:     /genre/{genre}
     defaults: { _controller: ProjectVideoBundle:Movie:genre }
 
+project_movie_cart:
+    path:     /cart
+    defaults: { _controller: ProjectVideoBundle:Cart:cart }
+
 project_video_download:
     path:     /download
     defaults: { _controller: ProjectVideoBundle:Default:main }
@@ -29,6 +33,10 @@ project_movie_add_genre:
 project_movie_add_item:
     path:     /add_item/{item}
     defaults: { _controller: ProjectVideoBundle:Cart:addItem }
+
+project_movie_remove_item:
+    path:     /remove_item/{item}
+    defaults: { _controller: ProjectVideoBundle:Cart:removeItem }
 
 project_video_comment:
     path:     /comment/{userId}/{movieId}

@@ -20,8 +20,6 @@ class MovieController extends Controller
             $session->set('cart', array());
         }
         $cart = $session->get('cart');
-        $id = $session->getId();
-        // var_dump($cart);die();
 
         $movies = $this->getDoctrine()
         ->getRepository('ProjectVideoBundle:Movie')

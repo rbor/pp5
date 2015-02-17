@@ -31,15 +31,16 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
-                    <a href="{{ path('project_video_index') }}">Główna</a>
+                    <a href="{{ path('project_video_index') }}">Home</a>
+                    <a href="{{ path('project_movie_cart') }}">Cart</a>
                 </div>
                 <div class="col-md-6 text-right">
                 {% if is_granted("ROLE_USER") %}
-                    Zalogowany jako: {{ app.user.username }}
-                    <a href="{{ path('project_video_index') }}logout">Wyloguj</a>
+                    Hello {{ app.user.username }}
+                    <a href="{{ path('project_video_index') }}logout">Logout</a>
                 {% else %}
-                    <a href="{{ path('project_video_index') }}register">Rejestracja</a>
-                    <a href="{{ path('project_video_index') }}login">Logowanie</a>
+                    <a href="{{ path('project_video_index') }}register">Register</a>
+                    <a href="{{ path('project_video_index') }}login">Login</a>
                 {% endif %}
                 </div>
             </div>

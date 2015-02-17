@@ -22,7 +22,7 @@
 	<div class="col-md-12">
 		<p class="text-justify">Description: {{ plot }}</p>
 		<p>Actors: {{ actors }}</p>
-		<p>Price: {{ price }} PLN <a href="{{path('project_movie_add_item', {'item': movie_id})}}"><button id="rent">Add to cart</button></a></p>
+		<p>Price: {{ price }} PLN <a href="{{path('project_movie_add_item', {'item': movie_id })}}"><button id="rent">Add to cart</button></a></p>
 	</div>
 </div>
 
@@ -31,7 +31,7 @@
 		<h3>Cart</h3>
 			<ul>
 				{% for item in cart %}
-					<li>{{ item }}</li>
+					<li>{{ item.title }}</li>
 				{% endfor %}
 			</ul>
 		<p>Total: {{cart|length}} </p>
