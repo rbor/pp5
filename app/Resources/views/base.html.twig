@@ -13,7 +13,23 @@
         <!-- <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" /> -->
     </head>
     <body>
-        {% block body %}{% endblock %}
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <a href="{{ path('project_video_index') }}">Główna</a>
+                </div>
+                <div class="col-md-6 text-right">
+                {% if is_granted("ROLE_USER") %}
+                    Zalogowany jako: {{ app.user.username }}
+                    <a href="{{ path('project_video_index') }}logout">Wyloguj</a>
+                {% else %}
+                    <a href="{{ path('project_video_index') }}register">Rejestracja</a>
+                    <a href="{{ path('project_video_index') }}login">Logowanie</a>
+                {% endif %}
+                </div>
+            </div>
+            {% block body %}{% endblock %}
+        </div>
         {% block javascripts %}{% endblock %}
     </body>
 </html>

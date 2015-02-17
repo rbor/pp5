@@ -1,29 +1,35 @@
 {% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+	<style>
+		.col-md-3 img{
+	    width: 240px;
+	    height: 360px;
+		}
+
+		.col-md-3 {
+		margin-bottom: 20px;
+		}
+	</style>
+{% endblock %}
+
 {% block body %}
 <p>It's alive !</p>
 
-
-
-{% if is_granted("ROLE_USER") %}
-    Zalogowany jako: {{ app.user.username }}
-	<a href="/pp5/web/app_dev.php/logout">Wyloguj</a>
-{% else %}
-	<a href="/pp5/web/app_dev.php/register">Rejestracja</a>
-	<a href="/pp5/web/app_dev.php/login">Logowanie</a>
-{% endif %}
-
-{% if is_granted("ROLE_USER") %}
-    Zalogowany jako: {{ app.user.username }}
-{% endif %}
-
-<ul>
+<div class="row">
 {% for item in movies %}
-	<li>
+	{% if loop.index % 4 == 0 %}
+		<div class="row">
+	{% endif %}
+		<div class="col-md-3">
 		<a href='{{ path('project_movie_movie', { 'movie': item.imdbId }) }}'><img src='{{item.poster}}'></a> 
 		<a href='{{ path('project_movie_movie', { 'movie': item.imdbId }) }}'>{{ item.title }}</a>
-	</li>
+		</div>
+	{% if loop.index % 4 == 0%}
+		</div>
+	{% endif %}
 {% endfor %}
-</ul>
+</div>
 
 <h2>Movies</h2>
 <p>
@@ -38,11 +44,12 @@ Movie poster, Movie title<br>
 Movie poster, Movie title<br>
 </p>
 
-
+<div class="row">
 <h2>Genres</h2>
-<ul>
+<ul class="list-inline">
 {% for item in genres %}
 	<li><a href='{{ path('project_movie_genre', { 'genre': item }) }}'>{{item}}</a></li>
 {% endfor %}
 </ul>
+</div>
 {% endblock %}

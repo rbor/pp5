@@ -4,18 +4,10 @@
 
 {% block body %}
 
-{% if is_granted("ROLE_USER") %}
-    Zalogowany jako: {{ app.user.username }}
-	<a href="{{ path('project_video_index') }}logout">Wyloguj</a>
-{% else %}
-	<a href="{{ path('project_video_index') }}register">Rejestracja</a>
-	<a href="{{ path('project_video_index') }}login">Logowanie</a>
-{% endif %}
-
 <p>
-{% if poster is defined %}
-<img src='{{ poster }}'/>
-{% endif %}
+	{% if poster is defined %}
+		<img src='{{ poster }}'/>
+	{% endif %}
 </p>
 <h2>Title: {{ title }}</h2>
 <p>Description: {{ plot }}</p>
@@ -24,9 +16,9 @@
 
 <h3>Cart</h3>
 <ul>
-{% for item in cart %}
-	<li>{{ item }}</li>
-{% endfor %}
+	{% for item in cart %}
+		<li>{{ item }}</li>
+	{% endfor %}
 </ul>
 <p>Total: {{cart|length}} </p>
 
