@@ -49,7 +49,7 @@ class DefaultController extends Controller
 
         if(count($popularByComments) > 4){
             for($i = 0; $i<4; $i++){
-                $mostCommentedTrio[] = $popularByComments[$i];       
+                $mostCommentedQuatro[] = $popularByComments[$i];       
             }
         } else {
             $mostCommentedQuatro = $popularByComments;
@@ -59,8 +59,8 @@ class DefaultController extends Controller
         $mostCommentedMovies = array();
 
         foreach ($movies as $key => $value) {
-            if(in_array($value->getId(), $mostCommentedTrio)){
-                $mostCommentedMovies[array_search($value->getId(), $mostCommentedTrio)] = $value;
+            if(in_array($value->getId(), $mostCommentedQuatro)){
+                $mostCommentedMovies[array_search($value->getId(), $mostCommentedQuatro)] = $value;
             }
         }
 
