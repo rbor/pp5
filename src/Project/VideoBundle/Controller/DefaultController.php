@@ -47,7 +47,7 @@ class DefaultController extends Controller
         // Ids of 4 most commented movies
         $mostCommentedQuatro = array();
 
-        if($popularByComments > 4){
+        if(count($popularByComments) > 4){
             for($i = 0; $i<4; $i++){
                 $mostCommentedTrio[] = $popularByComments[$i];       
             }
