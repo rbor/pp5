@@ -43,7 +43,7 @@ project_video_comment:
     defaults: { _controller: ProjectVideoBundle:Movie:comment }
 
 project_movie_payment_pay:
-    path: /payment/pay
+    path: /payment/pay/{total}
     defaults: { _controller: ProjectVideoBundle:Payment:pay }
 
 project_movie_payment_handle:

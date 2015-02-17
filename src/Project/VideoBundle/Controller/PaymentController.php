@@ -10,8 +10,10 @@ use Symfony\Component\HttpFoundation\Response;
 
 class PaymentController extends Controller
 {
-    public function payAction()
+    public function payAction($total)
     {
+    	var_dump($total);die();
+
         $data=array(
 			'id' => 72890,
 			'amount' => 222.52,
