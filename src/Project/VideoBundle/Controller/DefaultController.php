@@ -22,11 +22,48 @@ class DefaultController extends Controller
         foreach ($genres as $item) {
             $movieGenres[] = $item->getGenre();
         }
-        // var_dump(array_unique($movieGenres));die();
+
+         $repository = $this->getDoctrine()
+        ->getRepository('ProjectVideoBundle:Comment')
+        ->findAll();
+
+        // Movies by reviews
+        $comments = array();
+
+        foreach ($repository as $key => $value) {
+            $comments[] = $value->getMovieId();
+        }
+
+        $comments = array_count_values($comments);
+        arsort($comments);
+        $popularByComments = array();
+
+        foreach ($comments as $key => $value) {
+            if(array_key_exists($value, $movies)){
+                $popularByComments[] = $key;
+            }
+        }
+
+        // Ids of 3 most commented movies
+        $mostCommentedTrio = array();
+
+        for($i = 0; $i<3; $i++){
+            $mostCommentedTrio[] = $popularByComments[$i];       
+        }
+
+        // Data of 3 most commented movies
+        $mostCommentedMovies = array();
+
+        foreach ($movies as $key => $value) {
+            if(in_array($value->getId(), $mostCommentedTrio)){
+                $mostCommentedMovies[array_search($value->getId(), $mostCommentedTrio)] = $value;
+            }
+        }
 
         return $this->render('ProjectVideoBundle:Default:index.html.twig', array(
-        	'movies' => $movies,
-            'genres' => array_unique($movieGenres)
+        	'movies'    => $movies,
+            'genres'    => array_unique($movieGenres),
+            'commented' => $mostCommentedMovies
         	));
     }
 
