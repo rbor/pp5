@@ -14,11 +14,20 @@ class MovieController extends Controller
 {
     public function movieAction($movie)
     {
+        $session = $this->getRequest()->getSession();
+
+        if($session->has('cart') == false){
+            $session->set('cart', array());
+        }
+        $cart = $session->get('cart');
+        $id = $session->getId();
+        // var_dump($cart);die();
+
         $movies = $this->getDoctrine()
         ->getRepository('ProjectVideoBundle:Movie')
         ->findByimdb_id($movie);
 
-		$title = $movies[0]->getTitle();
+        $title = $movies[0]->getTitle();
         $plot = $movies[0]->getPlot();
         $actors = $movies[0]->getActors();
         $poster = $movies[0]->getPoster();
@@ -38,11 +47,11 @@ class MovieController extends Controller
             'poster'    => $poster,
             'price'     => $price,
             'comments'  => $comments,
-            'movie_id'  => null,
-            'user_id'   => null
+            'movie_id'  => $movie,
+            'user_id'   => null,
+            'cart'      => $cart
              ));
         }
-            // var_dump($title);
 
         $userId = $user->getId();
 
@@ -54,7 +63,8 @@ class MovieController extends Controller
         	'price' 	=> $price,
             'comments'  => $comments,
             'movie_id'  => $movie,
-            'user_id'   => $userId
+            'user_id'   => $userId,
+            'cart'      => $cart
         	 ));
     }
 
@@ -148,17 +158,12 @@ class MovieController extends Controller
 
         $genres = explode(', ', $data['Genre']);
 
-        // var_dump($genres);die();
-
         $x = $this->getDoctrine()
             ->getRepository('ProjectVideoBundle:Movie')
             ->findByimdb_id($movieId);
         $movie = $x[0];
 
-        // var_dump($x);die();
-
         foreach ($genres as $item) {
-            // var_dump($item);die();
             $movieGenre = new Genre();
         
             $movieGenre->setMovie($movie);
@@ -179,16 +184,12 @@ class MovieController extends Controller
             ->getRepository('ProjectVideoBundle:Genre')
             ->findBygenre($genre);
 
-        // var_dump($x[0]->getMovieId());die();
-
         $moviesId = array();
 
         foreach ($x as $item) {
             $moviesId[] = $item->getMovieId();
         }
         
-        // var_dump($moviesId);die();
-
         $movies = array();
         $imbdIds = array();
 
@@ -200,11 +201,9 @@ class MovieController extends Controller
             $movies[] =  array($x[0]->getImdbId(), $x[0]->getPoster());
         }
         
-        // var_dump($movies);die();
         return $this->render('ProjectVideoBundle:Movie:genre.html.twig', array(
             'movies'    => $movies,
             ));
-
     }
 
 }

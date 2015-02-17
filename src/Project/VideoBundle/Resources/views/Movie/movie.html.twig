@@ -20,7 +20,18 @@
 <h2>Title: {{ title }}</h2>
 <p>Description: {{ plot }}</p>
 <p>Actors: {{ actors }}</p>
-<p>Price: {{ price }} PLN <button id="rent">Add to cart</button></p>
+<p>Price: {{ price }} PLN <a href="/pp5/web/app_dev.php/add_item/{{ movie_id }}"><button id="rent">Add to cart</button></a></p>
+
+<h3>Cart</h3>
+<ul>
+{% for item in cart %}
+	<li>{{ item }}</li>
+{% endfor %}
+</ul>
+<p>Total: {{cart|length}} </p>
+
+PATH: {{path('project_video_index')}}
+
 
 <h3>Reviews</h3>
 <div id="reviews">

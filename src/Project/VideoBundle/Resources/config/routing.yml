@@ -26,6 +26,10 @@ project_movie_add_genre:
     path:     /add_genre/{movieId}
     defaults: { _controller: ProjectVideoBundle:Movie:addGenre }
 
+project_movie_add_item:
+    path:     /add_item/{item}
+    defaults: { _controller: ProjectVideoBundle:Cart:addItem }
+
 project_video_comment:
     path:     /comment/{userId}/{movieId}
     defaults: { _controller: ProjectVideoBundle:Movie:comment }
