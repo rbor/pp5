@@ -20,6 +20,12 @@ class OrderCart
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="orderNumber", type="string", length=255)
+     */
+    private $orderNumber;
 
     /**
      * @var integer
@@ -48,6 +54,13 @@ class OrderCart
      * @ORM\Column(name="expired_date", type="datetime")
      */
     private $expiredDate;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="order_date", type="datetime")
+     */
+    private $orderDate;
 
     /**
      * @var integer

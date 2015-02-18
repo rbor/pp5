@@ -11,9 +11,9 @@ class CartController extends Controller
 {
 	public function addItemAction($item){
 
-		$isAlreadyInCart = false;
+	$isAlreadyInCart = false;
 
-		$session = $this->getRequest()->getSession();
+	$session = $this->getRequest()->getSession();
         $cart = $session->get('cart');
 
         $movies = $this->getDoctrine()
@@ -65,7 +65,7 @@ class CartController extends Controller
 	}
 
 	public function cartAction(){
-		$session = $this->getRequest()->getSession();
+	$session = $this->getRequest()->getSession();
         $cart = $session->get('cart');
 
         return $this->render('ProjectVideoBundle:Cart:cart.html.twig', array(

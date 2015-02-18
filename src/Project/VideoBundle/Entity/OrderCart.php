@@ -251,4 +251,50 @@ class OrderCart
     {
         return $this->movie;
     }
+
+    /**
+     * Set orderNumber
+     *
+     * @param string $orderNumber
+     * @return OrderCart
+     */
+    public function setOrderNumber($orderNumber)
+    {
+        $this->orderNumber = $orderNumber;
+
+        return $this;
+    }
+
+    /**
+     * Get orderNumber
+     *
+     * @return string 
+     */
+    public function getOrderNumber()
+    {
+        return $this->orderNumber;
+    }
+
+    /**
+     * Set orderDate
+     *
+     * @param \DateTime $orderDate
+     * @return OrderCart
+     */
+    public function setOrderDate($orderDate)
+    {
+        $this->orderDate = $orderDate;
+
+        return $this;
+    }
+
+    /**
+     * Get orderDate
+     *
+     * @return \DateTime 
+     */
+    public function getOrderDate()
+    {
+        return $this->orderDate;
+    }
 }

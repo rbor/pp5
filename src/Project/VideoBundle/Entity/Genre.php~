@@ -95,4 +95,27 @@ class Genre
     * @ORM\JoinColumn(name="movie_id", referencedColumnName="id", nullable=false)
     */
     protected $movie;
+
+    /**
+     * Set movie
+     *
+     * @param \Project\VideoBundle\Entity\Movie $movie
+     * @return Genre
+     */
+    public function setMovie(\Project\VideoBundle\Entity\Movie $movie)
+    {
+        $this->movie = $movie;
+
+        return $this;
+    }
+
+    /**
+     * Get movie
+     *
+     * @return \Project\VideoBundle\Entity\Movie 
+     */
+    public function getMovie()
+    {
+        return $this->movie;
+    }
 }
