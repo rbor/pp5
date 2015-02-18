@@ -63,9 +63,6 @@ class PaymentController extends Controller
 			'email' => $email,
 			'URLC' => 'http://localhost/pp5/web/app_dev.php/payment/handle'
 		);
-
-        $em->persist($orderCart);
-        $em->flush();
 		
 		$params = http_build_query($data);
 		
