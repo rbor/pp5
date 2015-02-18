@@ -20,6 +20,12 @@ class OrderCart
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="orderNumber", type="string", length=255)
+     */
+    private $orderNumber;
 
     /**
      * @var integer

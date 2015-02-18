@@ -17,12 +17,15 @@ class PaymentController extends Controller
     	$firstname = $user->getFirstname();
     	$lastname = $user->getLastname();
     	$email = $user->getEmail();
+    	$control=$user->getUsername();
+    	$date=date('dmYHis');
+    	$orderNumber=$control.'_'.$date;
         $data=array(
 			'id' => 72890,
 			'amount' => $total,
 			'currency' => 'PLN',
-			'description' => 'wypozyczenie',
-			'control' => 'FV-153255',
+			'description' => $orderNumber,
+			'control' => $control,
 			'firstname' => $firstname,
 			'lastname' => $lastname,
 			'email' => $email,
