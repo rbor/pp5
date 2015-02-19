@@ -14,6 +14,10 @@ project_movie_cart:
     path:     /cart
     defaults: { _controller: ProjectVideoBundle:Cart:cart }
 
+project_video_my_orders:
+    path:     /my_orders
+    defaults: { _controller: ProjectVideoBundle:Default:myOrders }
+
 project_video_download:
     path:     /download
     defaults: { _controller: ProjectVideoBundle:Default:main }

@@ -131,4 +131,26 @@ class DefaultController extends Controller
     {
         return $this->render('ProjectVideoBundle:Default:genre.html.twig');
     }
+
+    public function myOrdersAction(){
+        $userId = $this->get('security.context')->getToken()->getUser()->getId();
+
+        $em = $this->getDoctrine()->getManager();
+        $myOrders = $em->getRepository('ProjectVideoBundle:OrderCart')->findByuser_id($userId);
+
+        $moviesId = array();
+
+        foreach ($myOrders as $key => $value) {
+            $moviesId[] = $value->getMovieId();
+        }
+
+        $repo = $this->getDoctrine()->getRepository('ProjectVideoBundle:Movie');
+        $movies = $repo->findBy(array('id' => $moviesId));
+        // var_dump($movies);die();
+
+        return $this->render('ProjectVideoBundle:Default:my.html.twig', array(
+            'orders'    => $movies
+            ));
+
+    }
 }

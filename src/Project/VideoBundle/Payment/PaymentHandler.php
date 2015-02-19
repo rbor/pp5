@@ -34,7 +34,7 @@ class PaymentHandler
 		//logika po transakcji
 		$orderNumber = $request->request->get('control');
 		$em=$this->getDoctrine()->getManager();
-		$orderCart=$em->getRepository('Project:VideoBundle:OrderCart')->findBystatus($orderNumber);
+		$orderCart=$em->getRepository('ProjectVideoBundle:OrderCart')->findBystatus($orderNumber);
 
 		if(!$orderNumber){
 			throw $this->createNotFoundException (

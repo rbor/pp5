@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+
+{% for item in orders %}
+	{{ item.Title }}
+{% endfor %}
+
+{% endblock %}
