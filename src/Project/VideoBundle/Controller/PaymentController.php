@@ -85,8 +85,10 @@ class PaymentController extends Controller
 		->handleRequest($request);
 
 		$session = $this->getRequest()->getSession();
+		$cart = $session->get('cart');
         $emptyArray = array();
         $session->set('cart', $emptyArray);
+        var_dump($cart);
 
 		return new Response($response);
 	}
