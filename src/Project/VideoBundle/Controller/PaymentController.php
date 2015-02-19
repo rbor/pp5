@@ -77,18 +77,15 @@ class PaymentController extends Controller
 	
 	public function handleAction(Request $request)
 	{
+		$session = $this->getRequest()->getSession();
+		$session->remove('cart');
+		
 		$logger = $this->get('monolog.logger.dotpay');
 		$logger->info('===== NEW URLC NOTIFICATION =======');
 		$logger->info(var_export($request->request, true));
 		//postman rest client
 		$response = $this->get('payment.handler')
 		->handleRequest($request);
-
-		$session = $this->getRequest()->getSession();
-		$cart = $session->get('cart');
-        $emptyArray = array();
-        $session->set('cart', $emptyArray);
-        var_dump($cart);
 
 		return new Response($response);
 	}
