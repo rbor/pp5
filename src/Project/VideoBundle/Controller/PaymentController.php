@@ -17,11 +17,11 @@ class PaymentController extends Controller
     	$firstname = $user->getFirstname();
     	$lastname = $user->getLastname();
     	$email = $user->getEmail();
-    	$control=$user->getUsername();
-    	$date=date('dmYHis');
-    	$orderNumber=$control.'_'.$date;
+       	$date=date('dmYHis');
+       	$userId = $user->getId();
+    	$orderNumber=$userId.'_'.$date;
     	$datetime = date_create();
-        $userId = $user->getId();
+        
 
         $session = $this->getRequest()->getSession();
         $cart = $session->get('cart');
@@ -57,7 +57,7 @@ class PaymentController extends Controller
 			'amount' => $total,
 			'currency' => 'PLN',
 			'description' => $orderNumber,
-			'control' => $control,
+			'control' => $orderNumber,
 			'firstname' => $firstname,
 			'lastname' => $lastname,
 			'email' => $email,

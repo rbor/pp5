@@ -41,6 +41,12 @@ class Movie
      * @ORM\Column(name="title", type="string")
      */
     private $title;
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="slug", type="string")
+     */
+    private $slug;
 
     /**
      * @var string

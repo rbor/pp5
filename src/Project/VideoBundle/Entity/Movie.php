@@ -41,6 +41,12 @@ class Movie
      * @ORM\Column(name="title", type="string")
      */
     private $title;
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="slug", type="string")
+     */
+    private $slug;
 
     /**
      * @var string
@@ -332,5 +338,28 @@ class Movie
     public function getGenres()
     {
         return $this->genres;
+    }
+
+    /**
+     * Set slug
+     *
+     * @param string $slug
+     * @return Movie
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
+    /**
+     * Get slug
+     *
+     * @return string 
+     */
+    public function getSlug()
+    {
+        return $this->slug;
     }
 }

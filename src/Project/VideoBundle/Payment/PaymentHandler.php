@@ -2,6 +2,8 @@
 
 namespace Project\VideoBundle\Payment;
 
+use Project\VideoBundle\Entity\OrderCart;
+
 class PaymentHandler
 {
 	const STATUS_DONE = 2;
@@ -30,6 +32,16 @@ class PaymentHandler
 		$request->request->get('control')
 		)) {
 		//logika po transakcji
+		$orderNumber = $request->request->get('control');
+		$em=$his->getDoctrine()->getManager();
+		$orderCart=$em->getRepository('Project:VideoBundle:OrderCart')->find($orderNumber);
+
+		if(!$orderNumber){
+			throw $this->createNotFoundException (
+				'No order '.$orderNumber);	
+		}
+		$orderCart->setStatus('Paid');
+		$em->flush();
 		
 		return self::TRANSACTION_OK;
 		} else {

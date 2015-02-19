@@ -26,6 +26,7 @@ class MovieController extends Controller
         ->findByimdb_id($movie);
 
         $title = $movies[0]->getTitle();
+        $slug = $movies[0]->getSlug();
         $plot = $movies[0]->getPlot();
         $actors = $movies[0]->getActors();
         $poster = $movies[0]->getPoster();
@@ -40,6 +41,7 @@ class MovieController extends Controller
         if($user == 'anon.'){
             return $this->render('ProjectVideoBundle:Movie:movie.html.twig', array(
             'title'     => $title,
+            'slug'      => $slug,
             'plot'      => $plot,
             'actors'    => $actors,
             'poster'    => $poster,
@@ -55,6 +57,7 @@ class MovieController extends Controller
 
         return $this->render('ProjectVideoBundle:Movie:movie.html.twig', array(
         	'title' 	=> $title,
+            'slug'      => $slug,
         	'plot' 		=> $plot,
         	'actors' 	=> $actors,
             'poster'    => $poster,
@@ -75,6 +78,7 @@ class MovieController extends Controller
         $title = $data['Title'];
         $plot = $data['Plot'];
         $actors = $data['Actors'];
+        $slug = strtolower(str_replace(" ","-",$title));
 
         if($data['Poster'] != 'N/A')
             $poster = $data['Poster'];
@@ -86,6 +90,7 @@ class MovieController extends Controller
         $movie->setImdbId($movieId);
         $movie->setPrice(20.00);
         $movie->setTitle($title);
+        $movie->setSlug($slug);
         $movie->setPlot($plot);
         $movie->setActors($actors);
         $movie->setPoster($poster);
