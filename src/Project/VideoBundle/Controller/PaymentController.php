@@ -71,15 +71,15 @@ class PaymentController extends Controller
 			'https://ssl.dotpay.pl/',
 			$params
 		);
+
+		$session = $this->getRequest()->getSession();
+		$session->remove('cart');
 		
 		return new RedirectResponse ($url);
     }
 	
 	public function handleAction(Request $request)
 	{
-		$session = $this->getRequest()->getSession();
-		$session->remove('cart');
-		
 		$logger = $this->get('monolog.logger.dotpay');
 		$logger->info('===== NEW URLC NOTIFICATION =======');
 		$logger->info(var_export($request->request, true));
