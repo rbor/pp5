@@ -3,8 +3,22 @@
 
 {% block body %}
 
-{% for item in orders %}
-	{{ item.Title }}
-{% endfor %}
+<h2>My Movies</h2>
+
+<div class="row">
+	{% for item in orders %}
+		{% if loop.index % 4 == 0 %}
+			<div class="row">
+		{% endif %}
+		<div class="col-md-3">
+			<a href='{{ path('project_movie_movie', { 'movie': item.imdbId }) }}'><img src='{{ asset('bundles/projectvideo/images/') }}{{ item.title }}.jpg'></a> 
+			<a href='{{ path('project_movie_movie', { 'movie': item.imdbId }) }}'>{{ item.title }}</a>
+			<button class="btn btn-primary">Watch</button>
+		</div>
+		{% if loop.index % 4 == 0%}
+			</div>
+		{% endif %}
+	{% endfor %}
+</div>
 
 {% endblock %}
