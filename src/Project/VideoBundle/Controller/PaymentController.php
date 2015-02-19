@@ -82,8 +82,12 @@ class PaymentController extends Controller
 		$logger->info(var_export($request->request, true));
 		//postman rest client
 		$response = $this->get('payment.handler')
-		->handleRequest($request)
-		;
+		->handleRequest($request);
+
+		$session = $this->getRequest()->getSession();
+        $emptyArray = array();
+        $session->set('cart', $emptyArray);
+
 		return new Response($response);
 	}
 }
