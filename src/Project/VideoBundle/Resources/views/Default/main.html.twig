@@ -2,16 +2,15 @@
 	<script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
 	<script>
 
-		var movies = ['tt0120338', 'tt0112573', 'tt0060315', 'tt0099685', 'tt1375666', 'tt0172495', 'tt0112641', 'tt0078748'];
+		var movies = ['tt0120338', 'tt0112573', 'tt0060315', 'tt0099685', 'tt1375666', 'tt0172495', 'tt0112641', 'tt0086250'];
 
 		$(document).ready(function(){
 			for(var i=0; i<movies.length; i++){
 				$.ajax({
 				  type: "POST",
-				  url: '/pp5/web/app_dev.php/add/' + movies[i]
+				  url: '/pp5/web/app.php/add/' + movies[i]
 				});
 			}
-			alert('Hello');
 		});
 	</script>
 {% endblock %}
