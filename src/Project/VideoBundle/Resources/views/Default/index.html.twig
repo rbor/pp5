@@ -6,6 +6,9 @@
 
 {% block body %}
 
+
+
+
 <div class="row">
 	<div class="col-md-12">
 		<h2>Movies</h2>
@@ -18,7 +21,7 @@
 			<div class="row">
 		{% endif %}
 		<div class="col-md-3">
-			<a href='{{ path('project_movie_movie', { 'movie': item.imdbId }) }}'><img src='{{item.poster}}'></a> 
+			<a href='{{ path('project_movie_movie', { 'movie': item.imdbId }) }}'><img src='{{ asset('bundles/projectvideo/images/') }}{{ item.title }}.jpg'></a> 
 			<a href='{{ path('project_movie_movie', { 'movie': item.imdbId }) }}'>{{ item.title }}</a>
 		</div>
 		{% if loop.index % 4 == 0%}
@@ -36,7 +39,7 @@
 <div class="row">
 	{% for item in commented %}
 		<div class="col-md-3">
-			<a href='{{ path('project_movie_movie', { 'movie': item.imdbId }) }}'><img src='{{item.poster}}'></a> 
+			<a href='{{ path('project_movie_movie', { 'movie': item.imdbId }) }}'><img src='{{ asset('bundles/projectvideo/images/') }}{{ item.title }}.jpg'></a> 
 			<a href='{{ path('project_movie_movie', { 'movie': item.imdbId }) }}'>{{ item.title }}</a>
 		</div>
 	{% endfor %}
