@@ -27,6 +27,7 @@ class DefaultController extends Controller
         ->getRepository('ProjectVideoBundle:Comment')
         ->findAll();
 
+        // MOST COMMENTED MOVIES
         // Movies by comments
         $comments = array();
 
@@ -66,10 +67,58 @@ class DefaultController extends Controller
             }
         }
 
+        // MOST ORDERED MOVIES
+
+        $orders = $this->getDoctrine()
+        ->getRepository('ProjectVideoBundle:OrderCart')
+        ->findAll();
+
+        // Movies by ordered
+        $ordered = array();
+
+        foreach ($orders as $key => $value) {
+            $ordered[] = $value->getMovieId();
+        }
+
+        $ordered = array_count_values($ordered);
+        arsort($ordered);
+
+        // Ids of ordered movies
+        $popularByOrders = array();
+
+        foreach ($ordered as $key => $value) {
+            if(array_key_exists($value, $movies)){
+                $popularByOrders[] = $key;
+            }
+        }
+
+        // Ids of 4 most ordered movies
+        $mostOrderedQuatro = array();
+
+        if(count($popularByOrders) > 4){
+            for($i = 0; $i<4; $i++){
+                $mostOrderedQuatro[] = $popularByOrders[$i];       
+            }
+        } else {
+            $mostOrderedQuatro = $popularByOrders;
+        }
+
+        // Data of 4 most ordered movies
+        $mostOrdereddMovies = array();
+
+        foreach ($movies as $key => $value) {
+            if(in_array($value->getId(), $mostOrderedQuatro)){
+                $mostOrdereddMovies[array_search($value->getId(), $mostOrderedQuatro)] = $value;
+            }
+        }
+
+        // var_dump($mostOrdereddMovies);die();
+
         return $this->render('ProjectVideoBundle:Default:index.html.twig', array(
         	'movies'    => $movies,
             'genres'    => array_unique($movieGenres),
-            'commented' => $mostCommentedMovies
+            'commented' => $mostCommentedMovies,
+            'ordered'   => $mostOrdereddMovies
         	));
     }
 
