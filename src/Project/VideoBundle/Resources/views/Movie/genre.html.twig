@@ -5,12 +5,13 @@
 {% block body %}
 
 <div class="row">
+<div class="col-md-12"><h2> {{ genre }} </h2></div>
 {% for item in movies %}
 	{% if loop.index % 4 == 0 %}
 		<div class="row">
 	{% endif %}
 		<div class="col-md-3">
-		<a href='{{ path('project_movie_movie', { 'movie': item.0 }) }}'><img src='{{item.1}}'></a> 
+		<a href='{{ path('project_movie_movie', { 'movie': item.0 }) }}'><img src='{{ asset('bundles/projectvideo/images/') }}{{ item.1 }}.jpg'></a> 
 		</div>
 	{% if loop.index % 4 == 0%}
 		</div>

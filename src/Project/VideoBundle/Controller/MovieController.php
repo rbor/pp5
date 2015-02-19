@@ -196,11 +196,12 @@ class MovieController extends Controller
             ->getRepository('ProjectVideoBundle:Movie')
             ->findByid($item);
 
-            $movies[] =  array($x[0]->getImdbId(), $x[0]->getPoster());
+            $movies[] =  array($x[0]->getImdbId(), $x[0]->getTitle());
         }
         
         return $this->render('ProjectVideoBundle:Movie:genre.html.twig', array(
             'movies'    => $movies,
+            'genre'     => $genre
             ));
     }
 
