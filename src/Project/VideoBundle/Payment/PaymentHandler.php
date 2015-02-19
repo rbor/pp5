@@ -33,7 +33,7 @@ class PaymentHandler
 		)) {
 		//logika po transakcji
 		$orderNumber = $request->request->get('control');
-		$em=$his->getDoctrine()->getManager();
+		$em=$this->getDoctrine()->getManager();
 		$orderCart=$em->getRepository('Project:VideoBundle:OrderCart')->find($orderNumber);
 
 		if(!$orderNumber){
