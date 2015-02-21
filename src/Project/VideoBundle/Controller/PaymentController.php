@@ -55,7 +55,7 @@ class PaymentController extends Controller
         $mailer = $this->get('mailer');
         $msg = \Swift_Message::newInstance() #$mailer->createMessage()
         ->setSubject('Confirmation order')
-        ->setFrom('moviestore.pp5@gmail.com')
+        ->setFrom('moviestore.pp5@no-reply')
         ->setTo($email)
         ->setBody(
         	$this->renderView('ProjectVideoBundle:Movie:email.html.twig',
