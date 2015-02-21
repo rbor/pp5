@@ -50,7 +50,17 @@ class PaymentController extends Controller
         	
 	        $em->persist($orderCart);
 	        $em->flush();
-        }
+        };
+
+        $mailer = $this->get('mailer');
+        $msg = \Swift_Message::newInstance() #$mailer->createMessage()
+        ->setSubject('Confirmation order')
+        ->setFrom('moviestore.pp5@gmail.com')
+        ->setTo($email)
+        ->setBody(
+        	$this->renderView('ProjectVideoBundle:Movie:email.html.twig',
+         array('user'=>$user)), 'text/html');
+        $mailer->send($msg);
 
         $data=array(
 			'id' => 72890,
